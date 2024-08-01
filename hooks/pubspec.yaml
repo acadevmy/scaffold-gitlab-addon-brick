@@ -5,3 +5,4 @@ environment:
 
 dependencies:
   mason: 0.1.0-dev.57
+  dolumns: ^2.0.1

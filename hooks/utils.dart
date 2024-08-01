@@ -31,11 +31,11 @@ String convertToHttpsRepositoryUrl(String url) {
 void openUrl(String url) async {
   try {
     if (Platform.isWindows) {
-      await Process.start('start', [url], mode: ProcessStartMode.detached);
+      await Process.start('start', [url]);
     } else if (Platform.isMacOS) {
-      await Process.start('open', [url], mode: ProcessStartMode.detached);
+      await Process.start('open', [url]);
     } else if (Platform.isLinux) {
-      await Process.start('xdg-open', [url], mode: ProcessStartMode.detached);
+      await Process.start('xdg-open', [url]);
     } else {
       throw Exception('Unsupported platform');
     }

@@ -17,7 +17,4 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  brickName:
-    type: string
-    description: The brick Name
-    prompt: What is the name of this brick?
+

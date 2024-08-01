@@ -11,14 +11,14 @@ void run(HookContext context) async {
 
   final dotenvKeys = getDotenvKeys();
 
-  context.logger.info(
-    'Configure gitlab environment variables:',
+  context.logger.warn(
+    'Configure gitlab environment variables:\n',
   );
 
   context.logger.info(dolumnify(
     [
       ['VARIABLE', 'VALUE'],
-      ['GL_TOKEN', ''],
+      ['GL_TOKEN', 'ask it to your master :)'],
       ['DOTENV_KEY_CI', dotenvKeys['ci'] ?? ''],
       ['DOTENV_KEY_STAGING', dotenvKeys['staging'] ?? ''],
       ['DOTENV_KEY_PRODUCTION', dotenvKeys['production'] ?? ''],
@@ -27,23 +27,6 @@ void run(HookContext context) async {
     headerIncluded: true,
     headerSeparator: '=',
   ));
-  context.logger.success(
-    'GL_TOKEN={valid gitlab token for semantic-release}',
-  );
 
-  final configureNow = context.logger.confirm(
-    'do you want to open the configuration page to set these variables now?',
-    defaultValue: true,
-  );
-
-  if (configureNow) {
-    openUrl(pipelineSettingsUrl);
-    bool finished = false;
-    do {
-      finished = context.logger.confirm(
-        'have you configured the variables?',
-        defaultValue: false,
-      );
-    } while (!finished);
-  }
+  await openUrl(pipelineSettingsUrl);
 }

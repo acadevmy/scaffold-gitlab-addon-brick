@@ -28,7 +28,7 @@ String convertToHttpsRepositoryUrl(String url) {
   }
 }
 
-void openUrl(String url) async {
+Future<void> openUrl(String url) async {
   try {
     if (Platform.isWindows) {
       await Process.start('start', [url]);

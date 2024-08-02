@@ -32,7 +32,7 @@ void configureGitlabBaseUrl(HookContext context) {
       context.logger.err('📚 Cannot find valid repository url!');
       url = context.logger
           .prompt(
-              '📚 Insert a valid gitlab repository clone https/ssh url (ex. https://gitlab.com/pillar-1/devops.git)')
+              '📚 Insert a valid gitlab repository clone https/ssh url (ex. https://gitlab.com/my-wonderful-project.git)')
           .trim();
     }
 

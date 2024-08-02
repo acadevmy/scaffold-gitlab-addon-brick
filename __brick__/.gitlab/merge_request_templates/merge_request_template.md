@@ -2,9 +2,9 @@
 
 <!-- Please delete options that are not relevant. -->
 
-- [ ] {{repositoryBaseUrl}}/-/merge_requests/{id}
-- [ ] {{repositoryBaseUrl}}/-/merge_requests/{id}
-- [ ] {{repositoryBaseUrl}}/-/merge_requests/{id}
+- [ ] {{{repositoryBaseUrl}}}/-/merge_requests/{id}
+- [ ] {{{repositoryBaseUrl}}}/-/merge_requests/{id}
+- [ ] {{{repositoryBaseUrl}}}/-/merge_requests/{id}
 
 ## Description
 

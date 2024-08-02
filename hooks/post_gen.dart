@@ -1,18 +1,13 @@
 import 'package:mason/mason.dart';
 import 'package:dolumns/dolumns.dart';
+import 'constants.dart';
 import 'utils.dart';
 
 void run(HookContext context) async {
-  String pipelineSettingsUrl = context.vars['repositoryBaseUrl'] ?? '';
-  if (!pipelineSettingsUrl.endsWith('/')) {
-    pipelineSettingsUrl = '$pipelineSettingsUrl/';
-  }
-  pipelineSettingsUrl = '$pipelineSettingsUrl-/settings/ci_cd';
-
   final dotenvKeys = getDotenvKeys();
 
   context.logger.warn(
-    'Configure gitlab environment variables:\n',
+    '📚 Remember to configure these Gitlab CI/CD variables:\n',
   );
 
   context.logger.info(dolumnify(
@@ -28,5 +23,22 @@ void run(HookContext context) async {
     headerSeparator: '=',
   ));
 
-  await openUrl(pipelineSettingsUrl);
+  context.logger.write('\n');
+
+  final configureItNow = context.logger.confirm(
+    '📚 do you want to setup gitlab variables now?',
+    defaultValue: true,
+  );
+
+  if (configureItNow) {
+    String pipelineSettingsUrl = getPipelineSettingsUrl(
+      context.vars[REPOSITORY_BASE_URL] ?? '',
+    );
+
+    await openUrl(pipelineSettingsUrl);
+    context.logger
+        .prompt('press any key after completing setup to continue...');
+  }
+
+  context.logger.write('\n');
 }

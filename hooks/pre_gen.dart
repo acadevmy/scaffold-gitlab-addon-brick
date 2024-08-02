@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:mason/mason.dart';
 
+import 'constants.dart';
 import 'utils.dart';
 
 void run(HookContext context) {
@@ -16,7 +17,7 @@ void run(HookContext context) {
 }
 
 void configureGitlabBaseUrl(HookContext context) {
-  context.vars.putIfAbsent('repositoryBaseUrl', () {
+  context.vars.putIfAbsent(REPOSITORY_BASE_URL, () {
     final processResult = Process.runSync(
       'git',
       [
@@ -27,15 +28,16 @@ void configureGitlabBaseUrl(HookContext context) {
     final configuredGitUrl = processResult.stdout.toString().trim();
     String url = configuredGitUrl;
 
-    while (!url.startsWith('https://') && !url.startsWith('git@gitlab')) {
-      context.logger.err('Cannot find valid repository url!');
+    while (!url.startsWith('http') && !url.startsWith('git@gitlab')) {
+      context.logger.err('📚 Cannot find valid repository url!');
       url = context.logger
           .prompt(
-              'Insert a valid gitlab repository clone https/ssh url (ex. https://gitlab.com/pillar-1/devops.git)')
+              '📚 Insert a valid gitlab repository clone https/ssh url (ex. https://gitlab.com/pillar-1/devops.git)')
           .trim();
     }
 
     if (url != configuredGitUrl) {
+      context.logger.info('📚 git remote add origin $url');
       Process.runSync(
         'git',
         [

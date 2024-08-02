@@ -28,6 +28,13 @@ String convertToHttpsRepositoryUrl(String url) {
   }
 }
 
+String getPipelineSettingsUrl(String repositoryUrl) {
+    if (!repositoryUrl.endsWith('/')) {
+    repositoryUrl = '$repositoryUrl/';
+  }
+  return '$repositoryUrl-/settings/ci_cd';
+}
+
 Future<void> openUrl(String url) async {
   try {
     if (Platform.isWindows) {

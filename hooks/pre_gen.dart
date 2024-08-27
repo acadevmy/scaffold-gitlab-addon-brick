@@ -11,7 +11,7 @@ void run(HookContext context) {
   Process.runSync(
     'pnpm',
     [
-      'install -D @semantic-release/gitlab -w',
+      'install', '-D', '@semantic-release/gitlab', '-w',
     ],
   );
 }
@@ -21,7 +21,7 @@ void configureGitlabBaseUrl(HookContext context) {
     final processResult = Process.runSync(
       'git',
       [
-        'config --get remote.origin.url',
+        'config', '--get', 'remote.origin.url',
       ],
     );
 
@@ -41,7 +41,7 @@ void configureGitlabBaseUrl(HookContext context) {
       Process.runSync(
         'git',
         [
-          'remote add origin $url',
+          'remote', 'add', 'origin', url,
         ],
       );
     }

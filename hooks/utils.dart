@@ -35,6 +35,27 @@ String getPipelineSettingsUrl(String repositoryUrl) {
   return '$repositoryUrl-/settings/ci_cd';
 }
 
+String getProtectedBranchesSettingsUrl(String repositoryUrl) {
+  if (!repositoryUrl.endsWith('/')) {
+    repositoryUrl = '$repositoryUrl/';
+  }
+  return '$repositoryUrl-/settings/repository#js-protected-branches-settings';
+}
+
+String getBranchDefaultSettingsUrl(String repositoryUrl) {
+  if (!repositoryUrl.endsWith('/')) {
+    repositoryUrl = '$repositoryUrl/';
+  }
+  return '$repositoryUrl-/settings/repository#branch-defaults-settings';
+}
+
+String getMergeRequestSettingsUrl(String repositoryUrl) {
+  if (!repositoryUrl.endsWith('/')) {
+    repositoryUrl = '$repositoryUrl/';
+  }
+  return '$repositoryUrl-/settings/merge_requests';
+}
+
 Future<void> openUrl(String url) async {
   try {
     if (Platform.isWindows) {

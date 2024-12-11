@@ -8,7 +8,15 @@ env({
  * @type {import('semantic-release').GlobalConfig}
  */
 const releaseConfig = {
-  branches: ["main"],
+  branches: [
+    "main",
+    {
+      name: "next",
+      channel: "next",
+      prerelease: true,
+    },
+    '+([0-9])?(.{+([0-9]),x}).x',
+  ],
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",

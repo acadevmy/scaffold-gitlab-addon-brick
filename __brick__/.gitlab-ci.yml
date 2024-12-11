@@ -1,4 +1,4 @@
 include:
   - file: '/gitlab-ci/common.yml'
     project: 'pillar-1/devops'
-    ref: 'v1.2.4'
+    ref: 'v2.0.0'

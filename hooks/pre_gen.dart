@@ -29,6 +29,10 @@ void configureGitlabBaseUrl(HookContext context) {
     String url = configuredGitUrl;
 
     while (!url.startsWith('http') && !url.startsWith('git@gitlab')) {
+      if (isNonInteractive(context)) {
+        throw Exception(
+            'Cannot find valid repository url! Pass --var $REPOSITORY_BASE_URL=<https or ssh gitlab url> (ex. https://gitlab.com/my-wonderful-project.git)');
+      }
       context.logger.err('📚 Cannot find valid repository url!');
       url = context.logger
           .prompt(

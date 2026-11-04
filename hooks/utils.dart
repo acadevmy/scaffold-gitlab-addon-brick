@@ -1,5 +1,11 @@
 import 'dart:io';
 
+import 'package:mason/mason.dart';
+
+bool isNonInteractive(HookContext context) {
+  return context.vars['devmyNonInteractive'] == true || !stdin.hasTerminal;
+}
+
 Map<String, String?> extractGroupAndProject(String url) {
   final pattern = RegExp(
       r'(?:(?:git@|https:\/\/)gitlab\.com[:\/])?(?:(?<group>[^\/]+)\/)?(?<project>[^\/]+)\.git');

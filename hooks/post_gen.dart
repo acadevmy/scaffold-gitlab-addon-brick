@@ -85,10 +85,18 @@ $pipelineVariables
 
   context.logger.info("📚 Next steps to follow:\n");
 
+  final nonInteractive = isNonInteractive(context);
+
   for (final step in manualSteps) {
     context.logger.info(step);
     context.logger.info('\n');
-    context.logger.prompt('press any key after completing setup to continue...');
+    if (!nonInteractive) {
+      context.logger.prompt('press any key after completing setup to continue...');
+    }
+  }
+
+  if (nonInteractive) {
+    context.logger.info('📚 The manual steps above must be completed by a human.');
   }
 
   context.logger.write('\n');
